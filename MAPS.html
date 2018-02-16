@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0">
+<meta charset="utf-8">
+<title>JavaScript API tutorial</title>
+<style>
+#map-canvas {
+    height: 400px;
+    width: 600px;
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<div id="map-canvas" class="map_canvas"></div>
+
+<script type="text/javascript">
+    var map;
+    function initMap() {
+        var mapOptions = {
+            center: new google.maps.LatLng(33.4929852,-86.8104557),
+            zoom:5,
+            backgroundColor: "#000000",
+            mapTypeId: google.maps.MapTypeId.TERRAIN
+        } 
+        map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+        
+    var marker = new google.maps.Marker({
+        position: {lat:33.4929852,lng:-86.8104557},
+        map:map,
+        title:"my marker"
+        });
+        
+    google.maps.event.addListener(marker, 'mouseover', function(){ console.log('clicked');});
+    google.maps.event.addListener(map, 'bounds_changed', function(){ console.log('resized'); });
+    }
+</script>
+
+<script language="javascript" src="https://maps.googleapis.com/maps/api/js?v=3&callback=initMap" async defer></script>
+</body>
+</html>
